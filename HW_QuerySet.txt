@@ -1,0 +1,35 @@
+Импортируем классы моделей
+>>> from task1.models import Buyer, Game
+
+Инициализируем покупателей
+>>> Buyer.objects.create(name='Ilya', balance=1500.05, age=24)
+<Buyer: Ilya>
+
+>>> Buyer.objects.create(name='Terminator2000', balance=42.15, age=52)
+<Buyer: Terminator2000>
+
+>>> Buyer.objects.create(name='Ubivator432', balance=0.5, age=16)
+<Buyer: Ubivator432>
+
+Инициализируем игры
+>>> Game.objects.create(title='Cyberpunk 2077', cost=31, size=46.2, description='Game of the year', age_limited=True)
+<Game: Cyberpunk 2077>
+
+>>> Game.objects.create(title='Mario', cost=5, size=0.5, description='Old Game')
+<Game: Mario>
+
+>>> Game.objects.create(title='Hitman', cost=12, size=36.6, description='Who kills Mark?', age
+_limited=True)
+<Game: Hitman>
+
+Устанвливаем связь игр с возрастным ограничением с пользователями подходящими под критерий 18+
+>>> buyer_old = Buyer.objects.filter(age__gte=18)
+>>> games = Game.objects.filter(age_limited=True)
+
+>>> for game in games:
+...     game.buyer.set(buyer_old)
+...
+
+Устанавливаем связь игры с отсутсвующим возрастным ограничением с пользователями с ID = 2 и ID = 3 
+>>> buyer = Buyer.objects.filter(id__in=[2, 3])
+>>> Game.objects.get(id=2).buyer.set(buyer)
