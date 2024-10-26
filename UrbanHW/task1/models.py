@@ -4,8 +4,10 @@ from django.db import models
 
 class Buyer(models.Model):
     name = models.CharField(max_length=50)
-    balance = models.DecimalField(max_digits=10, decimal_places=2)
+    password = models.CharField(max_length=128)
+    balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     age = models.IntegerField()
+    login = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -20,3 +22,4 @@ class Game(models.Model):
 
     def __str__(self):
         return self.title
+    

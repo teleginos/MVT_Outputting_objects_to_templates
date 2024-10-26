@@ -1,0 +1,27 @@
+{% extends "menu.html" %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Базовые HTML теги в шаблонах</title>
+</head>
+
+
+{% block pagename %}
+    {{ block.super }}
+{% endblock %}
+
+
+
+{% block menu %}
+    {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+    {{ block.super }}
+    
+{% endblock %}
+
+{% block authorization %}
+    {{ block.super }}
+{% endblock %}

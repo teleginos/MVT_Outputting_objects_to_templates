@@ -1,0 +1,26 @@
+{% extends "menu.html" %}
+
+
+{% block pagename %} 
+    <h1>Game Shop</h1> 
+{% endblock %}
+
+{% block menu %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    {% for game in games %}
+        <p>{{ game.title }} | {{ game.description }} | Стоимость {{ game.cost }} </p>
+        {% if game.age_limited == 0 %}
+            <button><a href="">Купить</a></button>
+        {% elif game.age_limited == 1 and buyer.age >= 18 %}
+            <button><a href="">Купить</a></button>
+        {% else %}
+            <p>Даная игра не доступна для Вас по возрастным ограничениям</p>
+        {% endif %}
+    {% endfor %}
+    <br><button><a href="/">Назад</a></button>
+    <br>{{ block.super }}
+{% endblock %}
+

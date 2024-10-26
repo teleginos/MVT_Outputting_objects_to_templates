@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'task1/styles.css' %}">
+</head>
+
+<body>
+    <form method="post">
+        {% csrf_token%}
+
+        {% for message in info.err%}
+            <p class="message">{{ message }}</p>
+        {% endfor %}
+
+        {% if info.success_message %}
+            <p class="success-message"> {{ info.success_message }}</p>
+        {% endif %}
+
+        <label for="username">Введите логин:</label>
+        <input type="text" id="username" name="username" maxlength="30" required>
+
+        <br><label for="password">Введите пароль:</label>
+        <input type="password" id="password" name="password" minlength="8" required>
+
+        <br><button type="submit">Авторизоваться</button>
+    </form>
+</body>
+</html>

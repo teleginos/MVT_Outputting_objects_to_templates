@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Game shop</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'task1/styles.css' %}">
+</head>
+
+<body>
+    {% block pagename %}
+        <h1>Главная страница</h1>
+    {% endblock %}
+    
+    
+
+    {% block menu %}
+
+
+        <p><a href="/">Главная</a></p>
+        <p><a href="/shop">Магазин игр</a></p>
+        <p><a href="/shopping_card">Корзина</a></p>
+
+        {% if buyer %}
+            <p><a href="/my_game">Мои игры</a></p>
+        {% endif %}
+    
+    {% endblock %}
+    
+    {% block content %}
+    
+    {% endblock %}
+
+    {% block authorization %}
+
+            {% if not buyer%}
+                <button><a href="authorization/">Авторизация</a></button>
+                <button><a href="registration/">Регистрация</a></button>
+
+            {% else %}
+
+                
+                <h4>Вы авторизовались как {{ buyer.name }}! Ваш баланс: {{ buyer.balance}} руб.</h4>
+                <button><a href="{% url 'logout' %}">Выйти</a></button>
+                
+            
+            {% endif %}
+
+    {% endblock %}
+</body>
+</html>
